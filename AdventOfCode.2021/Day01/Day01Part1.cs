@@ -6,17 +6,17 @@ namespace AdventOfCode._2021.Day01
 {
     public class Day01Part1 : IDay
     {
-        private const string INPUT_DAY01_1 = "inputs/day01_1_input.txt";
+        private const string INPUT = "inputs/day01_input.txt";
         
         public void Run()
         {
-            if (!File.Exists(INPUT_DAY01_1))
+            if (!File.Exists(INPUT))
             {
                 Console.Error.WriteLine("Input not found");
                 return;
             }
 
-            var input = File.ReadAllLines(INPUT_DAY01_1).Select(it => Convert.ToInt32(it)).ToList();
+            var input = File.ReadAllLines(INPUT).Select(it => Convert.ToInt32(it)).ToList();
             var comparisons = Day01Common.CompareDepthMeasurements(input);
             var countLargerMeasurements = Day01Common.HowManyMeasurementsAreLargerThanPreviousMeasurement(comparisons);
             
