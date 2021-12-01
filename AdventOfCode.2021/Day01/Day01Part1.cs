@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace AdventOfCode._2021.Day01
 {
-    public static class Day01Part1
+    public class Day01Part1 : IDay
     {
         private const string INPUT_DAY01_1 = "inputs/day01_1_input.txt";
         
-        public static void Main(string[] args)
+        public void Run()
         {
             if (!File.Exists(INPUT_DAY01_1))
             {
