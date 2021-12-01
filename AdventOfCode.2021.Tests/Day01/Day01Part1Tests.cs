@@ -5,7 +5,7 @@ using Xunit;
 
 namespace AdventOfCode._2021.Tests.Day01
 {
-    public class Day01Tests
+    public class Day01Part1Tests
     {
         private readonly List<(int measurement, MeasurementComparison comparison)> _input = new()
         {
@@ -28,7 +28,7 @@ namespace AdventOfCode._2021.Tests.Day01
             var measurements = _input.Select(it => it.measurement).ToList();
 
             // act
-            var actualComparisons = _2021.Day01.Day01.CompareDepthMeasurements(measurements);
+            var actualComparisons = _2021.Day01.Day01Common.CompareDepthMeasurements(measurements);
 
             // assert
             actualComparisons.Should().BeEquivalentTo(_input);
@@ -41,7 +41,7 @@ namespace AdventOfCode._2021.Tests.Day01
             const int expectedResult = 7;
 
             // act
-            var actualResult = _2021.Day01.Day01.HowManyMeasurementsAreLargerThanPreviousMeasurement(_input);
+            var actualResult = _2021.Day01.Day01Common.HowManyMeasurementsAreLargerThanPreviousMeasurement(_input);
 
             // assert
             actualResult.Should().Be(expectedResult);
