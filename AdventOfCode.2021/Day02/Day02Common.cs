@@ -38,18 +38,18 @@ namespace AdventOfCode._2021.Day02
             var position = 0;
             var depth = 0;
 
-            foreach (var commandEntry in listOfCommands)
+            foreach (var (command, distance) in listOfCommands)
             {
-                switch (commandEntry.command)
+                switch (command)
                 {
                     case SubmarineCommands.Forward:
-                        position += commandEntry.distance;
+                        position += distance;
                         break;
                     case SubmarineCommands.Down:
-                        depth += commandEntry.distance;
+                        depth += distance;
                         break;
                     case SubmarineCommands.Up:
-                        depth -= commandEntry.distance;
+                        depth -= distance;
                         break;
                 }
             }
