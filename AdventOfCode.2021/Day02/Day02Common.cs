@@ -57,7 +57,32 @@ namespace AdventOfCode._2021.Day02
             return (position, depth);
         }
         
-        
+        public static (int horiontalPosition, int aim, int depth) CalculatePositionByCommandInput_Part2(
+            List<(SubmarineCommands command, int distance)> listOfCommands)
+        {
+            var position = 0;
+            var aim = 0;
+            var depth = 0;
+
+            foreach (var (command, distance) in listOfCommands)
+            {
+                switch (command)
+                {
+                    case SubmarineCommands.Forward:
+                        position += distance;
+                        depth += aim * distance;
+                        break;
+                    case SubmarineCommands.Down:
+                        aim += distance;
+                        break;
+                    case SubmarineCommands.Up:
+                        aim -= distance;
+                        break;
+                }
+            }
+            
+            return (position, aim, depth);
+        }
 
     }
 }
