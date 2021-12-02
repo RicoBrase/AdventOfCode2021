@@ -17,7 +17,7 @@ namespace AdventOfCode._2021.Day02
 
             var input = File.ReadAllLines(INPUT);
             var listOfCommands = Day02Common.GetListOfCommandsByProcessingInput(input);
-            var (finalHorizontal, finalDepth) = Day02Common.CalculatePositionByCommandInput(listOfCommands);
+            var (finalHorizontal, finalDepth) = Day02Common.CalculatePositionByCommandInput_Part1(listOfCommands);
 
             Console.WriteLine("Final location of submarine:");
             Console.WriteLine($"\tHorizontal: {finalHorizontal}");

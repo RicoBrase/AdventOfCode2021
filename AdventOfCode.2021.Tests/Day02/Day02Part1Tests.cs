@@ -44,7 +44,7 @@ namespace AdventOfCode._2021.Tests.Day02
             // arrange
 
             // act
-            var (horiontalPosition, depth) = Day02Common.CalculatePositionByCommandInput(new List<(SubmarineCommands command, int distance)>());
+            var (horiontalPosition, depth) = Day02Common.CalculatePositionByCommandInput_Part1(new List<(SubmarineCommands command, int distance)>());
 
             // assert
             horiontalPosition.Should().Be(0);
@@ -60,7 +60,7 @@ namespace AdventOfCode._2021.Tests.Day02
             var listOfCommands = Day02Common.GetListOfCommandsByProcessingInput(Input);
 
             // act
-            var (actualPosition, actualDepth) = Day02Common.CalculatePositionByCommandInput(listOfCommands);
+            var (actualPosition, actualDepth) = Day02Common.CalculatePositionByCommandInput_Part1(listOfCommands);
 
             // assert
             actualPosition.Should().Be(expectedPosition);

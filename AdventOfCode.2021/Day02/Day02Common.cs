@@ -32,7 +32,7 @@ namespace AdventOfCode._2021.Day02
             return listOfCommands;
         }
         
-        public static (int horiontalPosition, int depth) CalculatePositionByCommandInput(
+        public static (int horiontalPosition, int depth) CalculatePositionByCommandInput_Part1(
             List<(SubmarineCommands command, int distance)> listOfCommands)
         {
             var position = 0;
@@ -56,6 +56,8 @@ namespace AdventOfCode._2021.Day02
             
             return (position, depth);
         }
+        
+        
 
     }
 }
