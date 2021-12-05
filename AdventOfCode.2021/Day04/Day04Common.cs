@@ -48,5 +48,24 @@ namespace AdventOfCode._2021.Day04
 
             throw new Exception();
         }
+
+        public static (BingoBoard winningBoard, int drawnNumberOnWin) DrawUntilOneBoardHasNotWon(int[] drawnNumbers,
+            List<BingoBoard> boards)
+        {
+            foreach (var drawnNumber in drawnNumbers)
+            {
+                var boardsToProcess = boards.Where(it => !it.Won).ToList();
+
+                foreach (var board in boardsToProcess)
+                {
+                    var preDrawCount = boards.Count(it => !it.Won);
+                    board.DrawNumber(drawnNumber);
+                    if (board.Won && boards.All(it => it.Won) && preDrawCount == 1) return (board, drawnNumber);
+                }
+            }
+
+            throw new Exception();
+        }
+
     }
 }
