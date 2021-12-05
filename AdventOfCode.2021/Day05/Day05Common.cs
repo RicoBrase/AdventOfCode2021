@@ -38,6 +38,47 @@ namespace AdventOfCode._2021.Day05
             
             return listOfPoints;
         }
+        
+        public static List<Point> GetListOfPointsOfALine_Part2(Line line)
+        {
+            var listOfPoints = new List<Point>();
+
+            var xDiff = line.Start.X - line.End.X;
+            var yDiff = line.Start.Y - line.End.Y;
+
+            if (xDiff == 0)
+            {
+                listOfPoints.AddRange(GetRange_Part1(line.Start.Y, line.End.Y)
+                    .Select(step => new Point {X = line.Start.X, Y = step}));
+            }
+            else if (yDiff == 0)
+            {
+                listOfPoints.AddRange(GetRange_Part1(line.Start.X, line.End.X)
+                    .Select(step => new Point {X = step, Y = line.Start.Y}));
+            }
+            else
+            {
+                var xStep = xDiff > 0 ? -1 : 1;
+                var yStep = yDiff > 0 ? -1 : 1;
+
+                var pointX = line.Start.X;
+                var pointY = line.Start.Y;
+
+                while (pointX != line.End.X + xStep && pointY != line.End.Y + yStep)
+                {
+                    listOfPoints.Add(new Point
+                    {
+                        X = pointX,
+                        Y = pointY
+                    });
+
+                    pointX += xStep;
+                    pointY += yStep;
+                }
+            }
+            
+            return listOfPoints;
+        }
 
         public static List<int> GetRange_Part1(int start, int end)
         {

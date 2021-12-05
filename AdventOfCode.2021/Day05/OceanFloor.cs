@@ -40,6 +40,35 @@ namespace AdventOfCode._2021.Day05
 
             return buildOceanFloor;
         }
+        
+        public int[][] Build_Part2()
+        {
+            var maxX = 0;
+            var maxY = 0;
+
+            foreach (var line in Lines)
+            {
+                maxX = Max(Max(line.Start.X, line.End.X), maxX);
+                maxY = Max(Max(line.Start.Y, line.End.Y), maxY);
+            }
+
+            var buildOceanFloor = new int[maxY+1][];
+
+            for (var y = 0; y <= maxY; y++)
+            {
+                buildOceanFloor[y] = new int[maxX + 1];
+            }
+            
+            foreach (var line in Lines)
+            {
+                foreach (var point in Day05Common.GetListOfPointsOfALine_Part2(line))
+                {
+                    buildOceanFloor[point.Y][point.X]++;
+                }
+            }
+
+            return buildOceanFloor;
+        }
 
         private int Max(int a, int b)
         {
