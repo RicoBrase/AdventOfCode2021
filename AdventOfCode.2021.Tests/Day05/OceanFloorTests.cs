@@ -22,7 +22,7 @@ namespace AdventOfCode._2021.Tests.Day05
             lines.ForEach(oceanFloor.AddLine);
 
             // act
-            var result = oceanFloor.Build();
+            var result = oceanFloor.Build_Part1();
 
             // assert
             result.Should().HaveCount(11);
@@ -30,7 +30,7 @@ namespace AdventOfCode._2021.Tests.Day05
         }
         
         [Fact]
-        public void Build_ShouldBuildArraysWithCorrectValues()
+        public void Build_Part1_ShouldBuildArraysWithCorrectValues()
         {
             // arrange
             var lines = new List<Line>
@@ -43,7 +43,7 @@ namespace AdventOfCode._2021.Tests.Day05
             lines.ForEach(oceanFloor.AddLine);
 
             // act
-            var result = oceanFloor.Build();
+            var result = oceanFloor.Build_Part1();
 
             // assert
             result[0][0].Should().Be(2);

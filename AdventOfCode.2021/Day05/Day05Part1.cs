@@ -22,7 +22,7 @@ namespace AdventOfCode._2021.Day05
             
             lines.ForEach(oceanFloor.AddLine);
 
-            var floorData = oceanFloor.Build();
+            var floorData = oceanFloor.Build_Part1();
             var multipleOverlapsOnFloor = floorData.SelectMany(it => it).Count(it => it >= 2);
             
             Console.WriteLine($"number of points where at least two lines overlap: {multipleOverlapsOnFloor}");

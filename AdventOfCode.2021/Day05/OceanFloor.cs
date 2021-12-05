@@ -12,7 +12,7 @@ namespace AdventOfCode._2021.Day05
             Lines.Add(line);
         }
 
-        public int[][] Build()
+        public int[][] Build_Part1()
         {
             var maxX = 0;
             var maxY = 0;
