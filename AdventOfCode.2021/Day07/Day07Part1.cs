@@ -17,7 +17,7 @@ namespace AdventOfCode._2021.Day07
 
             var input = File.ReadAllText(INPUT);
             var listOfCrabPositions = Day07Common.ParseInput(input);
-            var leastFuelNeeded = Day07Common.GetLeastAmountOfFuelNeeded(listOfCrabPositions);
+            var leastFuelNeeded = Day07Common.GetLeastAmountOfFuelNeeded_Part1(listOfCrabPositions);
             
             Console.WriteLine($"Least fuel needed to align all crabs on one position: {leastFuelNeeded}");
         }

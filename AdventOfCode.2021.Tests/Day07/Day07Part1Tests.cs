@@ -16,7 +16,7 @@ namespace AdventOfCode._2021.Tests.Day07
             var listOfCrabs = new List<int> {16, 1, 2, 0, 4, 2, 7, 1, 2, 14};
 
             // act
-            var actualFuelAmount = Day07Common.GetLeastAmountOfFuelNeeded(listOfCrabs);
+            var actualFuelAmount = Day07Common.GetLeastAmountOfFuelNeeded_Part1(listOfCrabs);
 
             // assert
             actualFuelAmount.Should().Be(expectedAmountOfFuel);

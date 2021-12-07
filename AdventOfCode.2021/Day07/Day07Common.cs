@@ -16,7 +16,7 @@ namespace AdventOfCode._2021.Day07
                 .ToList();
         }
 
-        public static int GetLeastAmountOfFuelNeeded(List<int> crabs)
+        public static int GetLeastAmountOfFuelNeeded_Part1(List<int> crabs)
         {
             var fuelNeed = new Dictionary<int, int>();
             var minPos = crabs.Min();
