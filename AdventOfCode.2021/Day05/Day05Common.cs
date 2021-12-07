@@ -8,16 +8,6 @@ namespace AdventOfCode._2021.Day05
     public static class Day05Common
     {
 
-        public static int Max(int a, int b)
-        {
-            return a > b ? a : b;
-        }
-        
-        public static int Min(int a, int b)
-        {
-            return a < b ? a : b;
-        }
-
         public static List<Point> GetListOfPointsOfALine_Part1(Line line)
         {
             var listOfPoints = new List<Point>();
@@ -83,8 +73,8 @@ namespace AdventOfCode._2021.Day05
         public static List<int> GetRange_Part1(int start, int end)
         {
             var range = new List<int>();
-            var step = Min(start, end);
-            var target = Max(start, end);
+            var step = Utils.Min(start, end);
+            var target = Utils.Max(start, end);
             while (step <= target)
             {
                 range.Add(step);

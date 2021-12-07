@@ -72,7 +72,7 @@ namespace AdventOfCode._2021.Day05
 
         private int Max(int a, int b)
         {
-            return Day05Common.Max(a, b);
+            return Utils.Max(a, b);
         }
         
     }
