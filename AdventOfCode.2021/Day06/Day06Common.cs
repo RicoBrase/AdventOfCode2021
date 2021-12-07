@@ -17,7 +17,7 @@ namespace AdventOfCode._2021.Day06
                 .ToList();
         }
         
-        public static List<Lanternfish> SimulateXDays(List<Lanternfish> listOfLanternfish, int days)
+        public static List<Lanternfish> SimulateXDays_Part1(List<Lanternfish> listOfLanternfish, int days)
         {
             var listOfFishs = new List<Lanternfish>();
             var newSpawnedFish = new List<Lanternfish>();

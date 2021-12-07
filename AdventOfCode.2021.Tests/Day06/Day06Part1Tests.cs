@@ -25,14 +25,14 @@ namespace AdventOfCode._2021.Tests.Day06
         [Theory]
         [InlineData(18, 26)]
         [InlineData(80, 5934)]
-        public void SimulateXDays_ShouldReturnCorrectList(int days, int expectedCountOfFish)
+        public void SimulateXDays_Part1_ShouldReturnCorrectList(int days, int expectedCountOfFish)
         {
             // arrange
             const string input = "3,4,3,1,2";
-            var initialList = Day06Common.ParseInput(input);
+            var initialList = Day06Common.ParseInput(input); 
 
             // act
-            var listAfter18Days = Day06Common.SimulateXDays(initialList, days);
+            var listAfter18Days = Day06Common.SimulateXDays_Part1(initialList, days);
 
             // assert
             listAfter18Days.Should().HaveCount(expectedCountOfFish);

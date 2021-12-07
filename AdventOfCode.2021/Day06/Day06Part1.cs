@@ -17,7 +17,7 @@ namespace AdventOfCode._2021.Day06
 
             var input = File.ReadAllText(INPUT);
             var listOfFish = Day06Common.ParseInput(input);
-            var listOfFishAfterSimulation = Day06Common.SimulateXDays(listOfFish, 80);
+            var listOfFishAfterSimulation = Day06Common.SimulateXDays_Part1(listOfFish, 80);
 
             Console.WriteLine($"Count of lanternfish after 80 days: {listOfFishAfterSimulation.Count}");
         }
