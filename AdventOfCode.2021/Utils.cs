@@ -13,5 +13,10 @@
             return a < b ? a : b;
         }
         
+        public static int CalculatePartialSum(int n)
+        {
+            return n * (n + 1) / 2;
+        }
+        
     }
 }
