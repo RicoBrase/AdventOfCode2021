@@ -41,6 +41,59 @@ namespace AdventOfCode._2021.Day06
 
             return listOfFishs;
         }
+        
+        public static long SimulateXDays_Part2(List<Lanternfish> listOfLanternfish, int days)
+        {
+            var currentFishs = new Dictionary<int, long>();
+            var nextFishs = new Dictionary<int, long>();
+
+            foreach (var lanternfish in listOfLanternfish)
+            {
+                if (!currentFishs.ContainsKey(lanternfish.Timer))
+                {
+                    currentFishs.Add(lanternfish.Timer, 1);
+                }
+                else
+                {
+                    currentFishs[lanternfish.Timer]++;
+                } 
+            }
+
+            for (var day = 1; day <= days; day++)
+            {
+                foreach (var timer in currentFishs.Keys)
+                {
+                    if (timer == 0)
+                    {
+                        nextFishs.TryGetValue(Lanternfish.RESET_TIMER_TO, out var previousVal);
+                        nextFishs.Put(Lanternfish.INIT_TIMER_NEW_SPAWN, currentFishs[0]);
+                        nextFishs.Put(Lanternfish.RESET_TIMER_TO, previousVal + currentFishs[0]);
+                    }
+                    else
+                    {
+                        nextFishs.TryGetValue(timer - 1, out var previousVal);
+                        nextFishs.Put(timer - 1, previousVal + currentFishs[timer]);
+                    }
+                }
+
+                currentFishs = new Dictionary<int, long>(nextFishs);
+                nextFishs.Clear();
+            }
+
+            return currentFishs.Values.Sum();
+        }
+
+        private static void Put<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue val)
+        {
+            if (!dict.ContainsKey(key))
+            {
+                dict.Add(key, val);
+            }
+            else
+            {
+                dict[key] = val;
+            }
+        }
 
     }
 }
