@@ -29,6 +29,28 @@ namespace AdventOfCode._2021.Day07
             
             return fuelNeed.Values.Min();
         }
+        
+        public static int GetLeastAmountOfFuelNeeded_Part2(List<int> crabs)
+        {
+            var fuelNeed = new Dictionary<int, int>();
+            var minPos = crabs.Min();
+            var maxPos = crabs.Max();
+
+            for (var position = minPos; position <= maxPos; position++)
+            {
+                fuelNeed.Add(
+                    position,
+                    crabs.Select(it => 
+                            Utils.CalculatePartialSum(Utils.Max(it, position) - Utils.Min(it, position))
+                        )
+                        .Sum()
+                    );
+            }
+            
+            return fuelNeed.Values.Min();
+        }
+
+        
 
     }
 }
