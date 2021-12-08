@@ -1,5 +1,4 @@
-﻿using AdventOfCode._2021.Day05;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
 namespace AdventOfCode._2021.Tests
@@ -49,6 +48,20 @@ namespace AdventOfCode._2021.Tests
 
             // assert
             actualPartialSum.Should().Be(expectedPartialSum);
+        }
+
+        [Theory]
+        [InlineData("hallo", "ahllo")]
+        [InlineData("otto", "oott")]
+        [InlineData("hello", "ehllo")]
+        public void StringSort_ShouldCorrectlySortCharsOfString(string input, string expectedResult)
+        {
+            // arrange
+            // act
+            var actualResult = input.Sort();
+
+            // assert
+            actualResult.Should().BeEquivalentTo(expectedResult);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode._2021
+﻿using System;
+
+namespace AdventOfCode._2021
 {
     public static class Utils
     {
@@ -17,6 +19,13 @@
         {
             return n * (n + 1) / 2;
         }
-        
+
+        public static string Sort(this string text)
+        {
+            var chars = text.ToCharArray();
+            Array.Sort(chars);
+            return new string(chars);
+        }
+
     }
 }
