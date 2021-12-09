@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Collections.Generic;
+using FluentAssertions;
 using Xunit;
 
 namespace AdventOfCode._2021.Tests
@@ -62,6 +63,21 @@ namespace AdventOfCode._2021.Tests
 
             // assert
             actualResult.Should().BeEquivalentTo(expectedResult);
+        }
+
+        [Theory]
+        [InlineData(new[] {9, 14, 9}, 1134)]
+        [InlineData(new[] {1, 2, 3}, 6)]
+        [InlineData(new[] {2, 3, 4}, 24)]
+        [InlineData(new[] {2, 3, 0}, 0)]
+        public void Multiply_ShouldCorrectlyMultiplyTheNumbers(int[] factors, int expectedProduct)
+        {
+            // arrange
+            // act
+            var actualProduct = factors.Multiply();
+
+            // assert
+            actualProduct.Should().Be(expectedProduct);
         }
     }
 }

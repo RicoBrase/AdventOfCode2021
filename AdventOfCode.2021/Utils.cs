@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventOfCode._2021
 {
@@ -25,6 +27,18 @@ namespace AdventOfCode._2021
             var chars = text.ToCharArray();
             Array.Sort(chars);
             return new string(chars);
+        }
+
+        public static int Multiply(this IList<int> list)
+        {
+            var product = list.First();
+
+            foreach (var i in list.Skip(1))
+            {
+                product *= i;
+            }
+            
+            return product;
         }
 
     }
