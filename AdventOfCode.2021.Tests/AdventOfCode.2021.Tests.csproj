@@ -5,6 +5,8 @@
         <RootNamespace>AdventOfCode._2021.Tests</RootNamespace>
 
         <IsPackable>false</IsPackable>
+
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

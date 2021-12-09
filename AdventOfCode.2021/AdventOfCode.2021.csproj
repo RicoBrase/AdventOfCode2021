@@ -4,6 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>AdventOfCode._2021</RootNamespace>
         <OutputType>Exe</OutputType>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
