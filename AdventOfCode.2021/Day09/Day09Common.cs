@@ -18,15 +18,15 @@ public static class Day09Common
             .ToList();
     }
 
-    public static List<int> GetAllLowPoints(List<List<int>> heightMap)
+    public static List<(int height, int x, int y)> GetAllLowPoints(List<List<int>> heightMap)
     {
-        var listOfLowPoints = new List<int>();
+        var listOfLowPoints = new List<(int height, int x, int y)>();
 
         for (var y = 0; y < heightMap.Count; y++)
         {
             for (var x = 0; x < heightMap[y].Count; x++)
             {
-                if(IsLowPoint(heightMap, x, y)) listOfLowPoints.Add(heightMap[y][x]);
+                if(IsLowPoint(heightMap, x, y)) listOfLowPoints.Add((heightMap[y][x], x, y));
             }
         }
         

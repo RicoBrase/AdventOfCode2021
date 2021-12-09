@@ -18,7 +18,7 @@ namespace AdventOfCode._2021.Day09
 
             var input = File.ReadAllLines(INPUT);
             var heightMap = Day09Common.ParseInputToHeightMap(input);
-            var lowPoints = Day09Common.GetAllLowPoints(heightMap);
+            var lowPoints = Day09Common.GetAllLowPoints(heightMap).Select(it => it.height).ToList();
             var riskLevels = Day09Common.TransformHeightDataToRiskLevel(lowPoints).Sum();
             
             Console.WriteLine($"Sum of risk levels of all low points: {riskLevels}");

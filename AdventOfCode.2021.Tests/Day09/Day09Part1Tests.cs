@@ -54,7 +54,7 @@ public class Day09Part1Tests
     {
         // arrange
         var heightMap = Day09Common.ParseInputToHeightMap(InputLines);
-        var lowPoints = Day09Common.GetAllLowPoints(heightMap);
+        var lowPoints = Day09Common.GetAllLowPoints(heightMap).Select(it => it.height).ToList();
         var riskLevels = Day09Common.TransformHeightDataToRiskLevel(lowPoints);
 
         const int expectedRiskLevelSum = 15;
@@ -97,7 +97,7 @@ public class Day09Part1Tests
         var heightMap = Day09Common.ParseInputToHeightMap(InputLines);
         
         // act
-        var actualLowPoints = Day09Common.GetAllLowPoints(heightMap);
+        var actualLowPoints = Day09Common.GetAllLowPoints(heightMap).Select(it => it.height).ToList();
 
         // assert
         actualLowPoints.Should().BeEquivalentTo(expectedLowPoints);
