@@ -68,5 +68,95 @@ public static class Day09Common
     {
         return heightData.Select(it => it + 1).ToList();
     }
+
+    public static Dictionary<(int x, int y), List<int>> GetAllBasins(List<List<int>> heightMap)
+    {
+        var listOfBasins = new Dictionary<(int x, int y), List<int>>();
+
+        foreach (var (_, x, y) in GetAllLowPoints(heightMap))
+        {
+            listOfBasins.Add((x, y), new List<int>());
+        }
+
+        for (var y = 0; y < heightMap.Count; y++)
+        {
+            for (var x = 0; x < heightMap[y].Count; x++)
+            {
+                if (heightMap[y][x] < 9)
+                {
+                    var lowPoint = GetLowPointFromPoint(heightMap, x, y);
+                    listOfBasins[lowPoint].Add(heightMap[y][x]);
+                }
+            }
+        }
+        
+        return listOfBasins;
+    }
+
+    public static List<int> GetSizesOfThreeBiggestBasins(
+        Dictionary<(int x, int y), List<int>> basins)
+    {
+        return basins.OrderByDescending(it => it.Value.Count).Take(3).Select(it => it.Value.Count).ToList();
+    }
     
+
+    public static (int x, int y) GetLowPointFromPoint(List<List<int>> heightMap, int x, int y)
+    {
+        var current = (x, y);
+        (int x, int y) previous = (-1, -1);
+        
+        while (!IsLowPoint(heightMap, current.x, current.y))
+        {
+            var currentPoint = heightMap[current.y][current.x];
+            
+            // check above, only if not first row
+            if (current.y > 0)
+            {
+                if (heightMap[current.y - 1][current.x] <= currentPoint
+                    && current != (previous.x, previous.y + 1))
+                {
+                    previous = current;
+                    current.y--;
+                    continue;
+                }
+            }
+        
+            // check below, only if not last row
+            if (current.y < heightMap.Count - 1)
+            {
+                if (heightMap[current.y + 1][current.x] <= currentPoint
+                    && current != (previous.x, previous.y - 1))
+                {
+                    previous = current;
+                    current.y++;
+                    continue;
+                }
+            }
+
+            // check left, only if not first column
+            if (current.x > 0)
+            {
+                if (heightMap[current.y][current.x - 1] <= currentPoint
+                    && current != (previous.x + 1, previous.y))
+                {
+                    current.x--;
+                    continue;
+                }
+            }
+
+            // check right, only if not last column
+            if (current.x < heightMap[current.y].Count - 1)
+            {
+                if (heightMap[current.y][current.x + 1] <= currentPoint
+                    && current != (previous.x - 1, previous.y))
+                {
+                    current.x++;
+                    continue;
+                }
+            }
+            
+        }
+
+        return current;
+    }
 }
