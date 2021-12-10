@@ -40,6 +40,16 @@ namespace AdventOfCode._2021
             
             return product;
         }
+        
+        public static TValue Middle<TValue>(this IList<TValue> list)
+        {
+            var data = list
+                .OrderBy(it => it)
+                .ToList();
+
+            var middleIndex = data.Count / 2;
+            return data[middleIndex];
+        }
 
     }
 }

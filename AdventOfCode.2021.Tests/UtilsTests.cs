@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using FluentAssertions;
 using Xunit;
 
@@ -78,6 +79,20 @@ namespace AdventOfCode._2021.Tests
 
             // assert
             actualProduct.Should().Be(expectedProduct);
+        }
+
+        [Theory]
+        [InlineData(new[] {3, 2, 4, 1, 5}, 3)]
+        [InlineData(new[] {1, 2, 3}, 2)]
+        [InlineData(new[] {3, 2, 4, 1, 5, 7, 6}, 4)]
+        public void Middle_ShouldReturnMiddleValueOfList(int[] list, int expectedResult)
+        {
+            // arrange
+            // act
+            var actualResult = list.Middle();
+
+            // assert
+            actualResult.Should().Be(expectedResult);
         }
     }
 }
