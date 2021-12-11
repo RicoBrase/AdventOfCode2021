@@ -131,4 +131,17 @@ public static class Day11Common
 
         return flashes;
     }
+
+    public static int RunUntilFlashesSync(List<List<Octopus>> boardOfOctopuses)
+    {
+        var countOfStepsRequired = 0;
+
+        while (boardOfOctopuses.SelectMany(it => it).Any(it => it.EnergyLevel != 0))
+        {
+            RunSingleSimulationStepAndReturnCountOfFlashes(boardOfOctopuses);
+            countOfStepsRequired++;
+        }
+
+        return countOfStepsRequired;
+    }
 }

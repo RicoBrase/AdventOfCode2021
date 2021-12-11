@@ -8,18 +8,17 @@ namespace AdventOfCode._2021.Tests.Day11;
 public class Day11CommonTests
 {
 
-    private static readonly string[] InputSample = new[]
-    {
-        "6594254334",
-        "3856965822",
-        "6375667284",
-        "7252447257",
-        "7468496589",
-        "5278635756",
-        "3287952832",
-        "7993992245",
-        "5957959665",
-        "6394862637"
+    private static readonly string[] InputSample = {
+        "5483143223",
+        "2745854711",
+        "5264556173",
+        "6141336146",
+        "6357385478",
+        "4167524645",
+        "2176841721",
+        "6882881134",
+        "4846848554",
+        "5283751526"
     };
 
     [Fact]
@@ -61,6 +60,8 @@ public class Day11CommonTests
         var board = Day11Common.ParseInput(InputSample);
 
         // act
+        // run twice, since first step is kind of lame and no flashes happen there
+        Day11Common.RunSingleSimulationStepAndReturnCountOfFlashes(board);
         Day11Common.RunSingleSimulationStepAndReturnCountOfFlashes(board);
 
         // assert
@@ -80,10 +81,26 @@ public class Day11CommonTests
         var actualBoard = Day11Common.ParseInput(InputSample);
 
         // act
+        // run twice, since first step is kind of lame and no flashes happen there
+        Day11Common.RunSingleSimulationStepAndReturnCountOfFlashes(actualBoard);
         var actualFlashes = Day11Common.RunSingleSimulationStepAndReturnCountOfFlashes(actualBoard);
 
         // assert
         actualFlashes.Should().Be(expectedFlashes);
+    }
+    
+    [Fact]
+    public void RunUntilFlashesSync_ShouldReturnCorrectNumberOfSimulationStepsNeeded()
+    {
+        // arrange
+        const int expectedResult = 195;
+        var board = Day11Common.ParseInput(InputSample);
+
+        // act
+        var actualResult = Day11Common.RunUntilFlashesSync(board);
+
+        // assert
+        actualResult.Should().Be(expectedResult);
     }
 
 }
