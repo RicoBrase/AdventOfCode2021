@@ -75,7 +75,7 @@ public class Day14CommonTests
     [InlineData(2, "NBCCNBBBCBHCB")]
     [InlineData(3, "NBBBCNCCNBBNBNBBCHBHHBCHB")]
     [InlineData(4, "NBBNBNBBCCNBCNCCNBBNBBNBBBNBBNBBCBHCBHHNHCBBCBHCB")]
-    public void RunPolymerizationStep_ShouldReturnCorrectPolymer(int stepsToRun, string expectedPolymer)
+    public void RunPolymerizationStep_Part1_ShouldReturnCorrectPolymer(int stepsToRun, string expectedPolymer)
     {
         // arrange
         var (startingPolymer, insertionRules) = Day14Common.ParseInput(Input);
@@ -84,17 +84,42 @@ public class Day14CommonTests
         var actualPolymer = startingPolymer;
         for (var i = 0; i < stepsToRun; i++)
         {
-            actualPolymer = Day14Common.RunPolymerizationStep(actualPolymer, insertionRules);
+            actualPolymer = Day14Common.RunPolymerizationStep_Part1(actualPolymer, insertionRules);
         }
 
         // assert
         actualPolymer.Should().BeEquivalentTo(expectedPolymer);
     }
+    
+    [Theory]
+    [InlineData(1, "NCNBCHB")]
+    [InlineData(2, "NBCCNBBBCBHCB")]
+    [InlineData(3, "NBBBCNCCNBBNBNBBCHBHHBCHB")]
+    [InlineData(4, "NBBNBNBBCCNBCNCCNBBNBBNBBBNBBNBBCBHCBHHNHCBBCBHCB")]
+    public void RunPolymerizationForXSteps_ShouldReturnCorrectGroupCounts(int stepsToRun, string expectedPolymer)
+    {
+        // arrange
+        var expectedPolymerCounts = new Dictionary<string, long>();
+        for (var i = 0; i < expectedPolymer.Length - 1; i++)
+        {
+            var group = expectedPolymer.Substring(i, 2);
+            if(!expectedPolymerCounts.ContainsKey(group)) expectedPolymerCounts.Add(group, 0);
+
+            expectedPolymerCounts[group]++;
+        }
+
+        var (startingPolymer, insertionRules) = Day14Common.ParseInput(Input);
+
+        // act
+        var actualPolymer = Day14Common.RunPolymerizationForXSteps(stepsToRun, string.Join("", startingPolymer), insertionRules);
+
+        // assert
+        actualPolymer.Should().BeEquivalentTo(expectedPolymerCounts);
+    }
 
     [Theory]
     [InlineData(10, 1588L)]
-    // [InlineData(40, 2188189693529L)]
-    public void GetElementScore_ShouldReturnCorrectNumber(int stepsToRun, long expectedScore)
+    public void GetElementScore_Part1_ShouldReturnCorrectNumber_IfPolymerizationStep_Part1IsUsed(int stepsToRun, long expectedScore)
     {
         // arrange
         var (startingPolymer, insertionRules) = Day14Common.ParseInput(Input);
@@ -102,11 +127,27 @@ public class Day14CommonTests
         for (var i = 0; i < stepsToRun; i++)
         {
             _testOutputHelper.WriteLine($"Step: {i}");
-            polymer = Day14Common.RunPolymerizationStep(polymer, insertionRules);
+            polymer = Day14Common.RunPolymerizationStep_Part1(polymer, insertionRules);
         }
         
         // act
         var actualScore = Day14Common.GetElementScore(polymer);
+
+        // assert
+        actualScore.Should().Be(expectedScore);
+    }
+    
+    [Theory]
+    [InlineData(10, 1588L)]
+    [InlineData(40, 2188189693529L)]
+    public void GetElementScore_Part2_ShouldReturnCorrectNumber_IfRunPolymerizationForXStepsIsUsed(int stepsToRun, long expectedScore)
+    {
+        // arrange
+        var (startingPolymer, insertionRules) = Day14Common.ParseInput(Input);
+        var polymer = Day14Common.RunPolymerizationForXSteps(stepsToRun, string.Join("", startingPolymer), insertionRules);
+
+        // act
+        var actualScore = Day14Common.GetElementScore_Part2(string.Join("", startingPolymer), polymer);
 
         // assert
         actualScore.Should().Be(expectedScore);
